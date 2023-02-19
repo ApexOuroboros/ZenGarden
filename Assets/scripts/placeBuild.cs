@@ -1,18 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-public class placeBuild : MonoBehaviour
+[CreateAssetMenu(fileName = "Tree Objects", menuName = "New Tree Objects")]
+
+public class placeBuild : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string itemName;
+    public GameObject prefab;
 }
