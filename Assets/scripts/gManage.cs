@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gManage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<placeBuild> objects = new List<placeBuild>();
+
+    public static gManage inst;
+
+    void Awake()
     {
-        
+        inst = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPlaceObject(placeBuild pObj)
     {
-        
+        objects.Add(pObj);
     }
+
+    public void EndGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
