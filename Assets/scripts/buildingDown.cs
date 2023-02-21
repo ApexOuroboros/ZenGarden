@@ -7,8 +7,11 @@ public class buildingDown : MonoBehaviour
     private bool curPlace;
     private placeBuild curBuildPlace;
 
+    private float placeUpdate = 0.05f;
+    private float updateTime;
     private Vector3 placementPos;
 
+    public GameObject itemPos;
     public static buildingDown inst;
 
     void Awake()
@@ -20,10 +23,12 @@ public class buildingDown : MonoBehaviour
     {
         curPlace = true;
         curBuildPlace = placeBuild;
+        itemPos.SetActive(true);
     }
 
     public void CancelPlacing()
     {
+        itemPos.SetActive(false);
         curPlace = false;
     }
 
@@ -40,6 +45,14 @@ public class buildingDown : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CancelPlacing();
+        }
+
+        if (Time.time - updateTime > placeUpdate && curPlace)
+        {
+            updateTime = Time.time;
+
+            placementPos = tileSelect.inst.TilePos();
+            itemPos.transform.position = placementPos;
         }
 
         if(curPlace && Input.GetMouseButtonDown(0))
